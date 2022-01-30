@@ -10,42 +10,54 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kuda.DetailsProjectActivity;
 import com.kuda.R;
 import com.kuda.SecondScreen;
-import com.kuda.model.RecommendProject;
+import com.kuda.model.Project;
 
-import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class CustomAdaptor extends RecyclerView.Adapter<CustomAdaptor.RecommendProjectHolder> {
 
     private Context context;
-    private List<RecommendProject> recommendProjects;
+    private List<Project> recommendProjects;
 
-    public CustomAdaptor(Context context, List<RecommendProject> recommendProjects) {
+    public CustomAdaptor(Context context, List<Project> recommendProjects) {
         this.context = context;
         this.recommendProjects = recommendProjects;
     }
 
     public class RecommendProjectHolder extends RecyclerView.ViewHolder {
-        TextView titleProject,goalProject;
+
+        TextView recommendProjectNama,recommendProjectUsername,recommendProjectProgress,recommendProjectCategory,recommendProjectJumlahPendana,recommendProjectDescription,recommendProjectLike,recommendProjectTargetDana,recommendProjectTenggatWaktu,recommendProjectJumlahDanaTerkumpul,recommendProjectComment,recommendProjectRatingProject,recommendProjectPortofolio;
         ImageView imageProject;
         CardView cardView;
 
         public RecommendProjectHolder(@NonNull View itemView) {
             super(itemView);
 
-            titleProject = itemView.findViewById(R.id.title_project);
-            goalProject = itemView.findViewById(R.id.goal_project);
+
+
             imageProject = itemView.findViewById(R.id.image_project);
             cardView = itemView.findViewById(R.id.card_project);
+
+            recommendProjectNama = itemView.findViewById(R.id.recommendProjectNama);
+//            recommendProjectUsername = itemView.findViewById(R.id.recommendProjectUsername);
+//            recommendProjectProgress = itemView.findViewById(R.id.recommendProjectProgress);
+//            recommendProjectCategory = itemView.findViewById(R.id.recommendProjectCategory);
+//            recommendProjectJumlahPendana = itemView.findViewById(R.id.recommendProjectJumlahPendana);
+//            recommendProjectDescription = itemView.findViewById(R.id.recommendProjectDescription);
+//            recommendProjectLike = itemView.findViewById(R.id.recommendProjectLike);
+            recommendProjectTargetDana = itemView.findViewById(R.id.recommendProjectTargetDana);
+//            recommendProjectTenggatWaktu = itemView.findViewById(R.id.recommendProjectTenggatWaktu);
+//            recommendProjectJumlahDanaTerkumpul = itemView.findViewById(R.id.recommendProjectJumlahDanaTerkumpul);
+//            recommendProjectComment = itemView.findViewById(R.id.recommendProjectComment);
+//            recommendProjectRatingProject = itemView.findViewById(R.id.recommendProjectRatingProject);
+//            recommendProjectPortofolio = itemView.findViewById(R.id.recommendProjectPortofolio);
         }
     }
 
@@ -60,10 +72,25 @@ public class CustomAdaptor extends RecyclerView.Adapter<CustomAdaptor.RecommendP
     @Override
     public void onBindViewHolder(@NonNull RecommendProjectHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        RecommendProject recommendProject = recommendProjects.get(position);
+        Project recommendProject = recommendProjects.get(position);
 
-        holder.titleProject.setText(recommendProject.getRecommend_project_title());
-        holder.goalProject.setText(recommendProject.getRecommend_project_goal()+" %");
+
+
+
+        holder.recommendProjectNama.setText(recommendProject.getNamaProject());
+//        holder.recommendProjectUsername.setText(recommendProject.getUsername());
+//        holder.recommendProjectProgress.setText(recommendProject.getProgress());
+//        holder.recommendProjectCategory.setText(recommendProject.getCategory());
+//        holder.recommendProjectJumlahPendana.setText(recommendProject.getJumlahPendana());
+//        holder.recommendProjectDescription.setText(recommendProject.getDescription());
+//        holder.recommendProjectLike.setText(recommendProject.getJumlahLike());
+        holder.recommendProjectTargetDana.setText(recommendProject.getTargetDana());
+//        holder.recommendProjectTenggatWaktu.setText(recommendProject.getTenggatWaktu());
+//        holder.recommendProjectJumlahDanaTerkumpul.setText(recommendProject.getJumlahDanaTerkumpul());
+//        holder.recommendProjectComment.setText(recommendProject.getComment());
+//        holder.recommendProjectRatingProject.setText(recommendProject.getRatingProject());
+//        holder.recommendProjectPortofolio.setText(recommendProject.getPortofolio());
+
         holder.imageProject.setImageResource(recommendProject.getImage());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,22 +99,11 @@ public class CustomAdaptor extends RecyclerView.Adapter<CustomAdaptor.RecommendP
                 recommend_project_image.setImageResource(recommendProject.getImage());
 
                 Bitmap bmp = ((BitmapDrawable) recommend_project_image.getDrawable()).getBitmap();
+//
 
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-
-                String tpTitle = recommendProject.getRecommend_project_title();
-                String tpCategory = recommendProject.getRecommend_project_category();
-                String tpGoal = recommendProject.getRecommend_project_goal();
-                String tpProgress = recommendProject.getRecommend_project_progress();
-
-                Intent intentSecondActivity=new Intent(context, DetailsProjectActivity.class);
-                intentSecondActivity.putExtra("tpTitle", tpTitle);
-                intentSecondActivity.putExtra("tpCategory", tpCategory);
-                intentSecondActivity.putExtra("tpGoal", tpGoal);
-                intentSecondActivity.putExtra("tpProgress", tpProgress);
-                intentSecondActivity.putExtra("image",byteArray);
+                Intent intentSecondActivity=new Intent(context, SecondScreen.class);
+                intentSecondActivity.putExtra("namaObj", recommendProject);
+                intentSecondActivity.putExtra("tpImage",bmp);
 
                 context.startActivity(intentSecondActivity);
 

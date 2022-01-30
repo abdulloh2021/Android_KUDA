@@ -1,56 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondScreen">
+    android:background="@drawable/back_blue"
+    android:orientation="vertical"
+    tools:context="com.kuda.DetailsProjectActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarDet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/namaProject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Details Project"
+                android:gravity="center_vertical"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:layout_weight="4"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8sp"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/faq"
+                    android:layout_marginBottom="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/faq"
+                    android:textSize="10sp"
+                    android:textColorLink="@color/whitey"
+                    android:layout_gravity="end"/>
+
+                <TextView
+                    android:id="@+id/tou"
+                    android:layout_marginBottom="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tou"
+                    android:textSize="10sp"
+                    android:textColorLink="@color/whitey"
+                    android:layout_gravity="end"/>
+
+                <TextView
+                    android:id="@+id/privacy"
+                    android:layout_marginTop="2sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacy"
+                    android:textSize="10sp"
+                    android:textColorLink="@color/whitey"
+                    android:layout_gravity="end"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarDet"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="#46F9F7F7">
+
+        <RelativeLayout
+            android:id="@+id/cont1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:layout_below="@id/toolbar">
+
+
+            <ImageView
+
+                android:id="@+id/imageProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/john_wick"
+
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageProject"
+                android:layout_centerHorizontal="true"
+                android:text="By: Username"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:id="@+id/contProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/username"
+                android:layout_marginStart="3pt"
+                android:layout_marginTop="3pt"
+                android:layout_marginEnd="3pt"
+                android:layout_marginBottom="3pt">
+
+
+                <TextView
+                    android:id="@+id/progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5pt"
+
+                    android:text="Progress"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:id="@+id/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/progress"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <ImageView
+                            android:id="@+id/iconCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_category" />
+
+                        <TextView
+                            android:id="@+id/category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/iconCategory"
+                            android:text="category" />
+
+                        <ImageView
+                            android:id="@+id/iconJumlahPendana"
+                            android:layout_toLeftOf="@+id/jumlahPendana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:src="@drawable/ic_baseline_people" />
+
+                        <TextView
+                            android:id="@+id/jumlahPendana"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="jumlahPendana" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_below="@+id/b1"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <ImageView
+                            android:id="@+id/iconTenggatWaktu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:src="@drawable/ic_baseline_calendar_month" />
+
+                        <TextView
+                            android:id="@+id/tenggatWaktu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/iconTenggatWaktu"
+                            android:text="tenggatWaktu" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_toLeftOf="@+id/jumlahLike"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_like"/>
+                        <TextView
+                            android:id="@+id/jumlahLike"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="jumlahLike" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/b3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_below="@+id/b2"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <ImageView
+                            android:id="@+id/iconTargetDana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_target_dana"/>
+                        <TextView
+                            android:id="@+id/targetDana"
+                            android:layout_toRightOf="@+id/iconTargetDana"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="targetDana" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/jumlahDanaTerkumpul"
+                            android:src="@drawable/ic_baseline_dana_terkumpul"/>
+                        <TextView
+                            android:id="@+id/jumlahDanaTerkumpul"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="jumlahDanaTerkumpul" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/b4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_below="@+id/b3"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <ImageView
+                            android:id="@+id/iconRatingProject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_star_rate" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/iconRatingProject"
+                            android:id="@+id/ratingProject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="ratingProject" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!--                ini visibility portofolio, description dan comment gone-->
+                <LinearLayout
+                    android:id="@+id/b7"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/b4"
+                    android:background="@color/abu">
+
+                    <TextView
+                        android:id="@+id/portofolio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="portofolio" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/b8"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/abu"
+                    android:layout_below="@id/b7"
+                    >
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/b2"
+                        android:text="description" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/b9"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/abu"
+                    android:layout_below="@id/b8"
+                    >
+                    <TextView
+                        android:id="@+id/comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="comment" />
+                </LinearLayout>
+                <!--                And gone-->
+
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cnt"
+            android:layout_centerHorizontal="true"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_details_project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/addToList"
+        android:layout_below="@id/barLayout"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/addToList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@id/fundThis"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="3pt"
+        android:layout_marginTop="3pt"
+        android:layout_marginEnd="3pt"
+        android:layout_marginBottom="3pt"
+        android:text="Add to Loved"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvCategory"
+    <Button
+        android:id="@+id/fundThis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        tools:layout_editor_absoluteX="176dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5pt"
+        android:background="@drawable/border"
+        android:text="Fund This Project"
+        android:textColor="@color/bg_tab_text_color" />
 
-    <TextView
-        android:id="@+id/tvGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategory"
-        tools:layout_editor_absoluteX="176dp"
-        tools:ignore="MissingConstraints"/>
-
-    <TextView
-        android:id="@+id/tvProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/tvGoal"
-        tools:layout_editor_absoluteX="176dp"
-        tools:ignore="MissingConstraints"/>
-
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="413dp"
-        android:layout_height="251dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProgress" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

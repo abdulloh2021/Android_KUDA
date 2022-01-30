@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_blue"
     tools:context=".InvoiceActivity">
 
     <LinearLayout
@@ -52,6 +53,7 @@
                     android:layout_height="match_parent"
                     android:layout_below="@id/invoice_summary"
                     android:background="@drawable/john_wick"
+
                     android:padding="20dp" />
             </LinearLayout>
 

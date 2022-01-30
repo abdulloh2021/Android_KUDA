@@ -29,28 +29,30 @@
                 />
 
             <TextView
-                android:id="@+id/title_project"
+                android:id="@+id/recommendProjectNama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="title_project"
-                android:background="@color/whitey"
-                android:textColor="#000"
-                android:textSize="10sp"
+                android:layout_above="@id/recommendProjectTargetDana"
+                android:background="@color/white_transparent"
                 android:gravity="center"
+                android:text="title_project"
+                android:textColor="#000"
 
-                android:layout_above="@id/goal_project"
-                />
+                android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/goal_project"
+                android:id="@+id/recommendProjectTargetDana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="@color/biru"
+                android:background="@color/whitey"
                 android:gravity="center"
                 android:text="goal_project"
                 android:textSize="10sp" />
         </RelativeLayout>
+
+
+
 
 
     </androidx.cardview.widget.CardView>

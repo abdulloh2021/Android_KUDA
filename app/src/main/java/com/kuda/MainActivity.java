@@ -1,36 +1,31 @@
 package com.kuda;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kuda.adapter.CustomAdaptor;
-import com.kuda.model.RecommendProject;
-import com.kuda.model.TrendingProject;
 import com.kuda.adapter.TrendingProjectAdapter;
+import com.kuda.model.Project;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-//    SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
-
     HorizontalInfiniteCycleViewPager viewPager;
-    List<TrendingProject> trendingProjectList = new ArrayList<>();
+    List<Project> trendingProjectList = new ArrayList<>();
 
     RecyclerView viewListRecommendProject;
-    List<RecommendProject> projectList;
-
-    String temp = null;
+    List<Project> projectList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,16 +71,10 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.profile:
-                        temp = getIntent().getStringExtra("token");
-//                        sharedPrefManager.getSP_Token(SharedPrefManager.SP_Token, temp);
-                        if (temp == null)   {
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
-                        }   else {
-                            startActivity(new Intent(getApplicationContext(), UserProfile.class));
-                        }
+                        startActivity(new Intent(getApplicationContext(),UserProfile.class));
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         return true;
+
                 }
                 return false;
             }
@@ -95,14 +84,19 @@ public class MainActivity extends AppCompatActivity {
 
         projectList = new ArrayList<>();
 
-        projectList.add(new RecommendProject("1ayam","Teknologi","Deskripsi tentang Ayam ayam ndadsadn adnasdsan nasdad an asdadn asdasd an  nasdnasdansdna asdnasnd ansdasdn asdnasdn asnda sdn asdadnnasd nasd","Rp.12.500.000","50%",R.drawable.bumblebee,R.drawable.logo_univ_ipb));
-        projectList.add(new RecommendProject("2bebek","Pertanian"," of time. Aweee it. At thatpoint, I the hot washing spot? I would prefernot to let you know nowte thostinations.Ideally we can meet sompanion.","Rp.525.800.000","80%",R.drawable.logo_univ_ui,R.drawable.logo_univ_ugm));
-        projectList.add(new RecommendProject("3kambing","Kesehatan","Deskripsi tentang Kambing","Rp.10.000.000","10%",R.drawable.john_wick,R.drawable.logo_univ_telkom));
-        projectList.add(new RecommendProject("4gagak","Teknologi","Deskripsi tentang Gagak","Rp.22.400.000","32%",R.drawable.bumblebee,R.drawable.logo_univ_ui));
-        projectList.add(new RecommendProject("5cacing","Teknologi","Deskripsi tentang Ayam ayam ndadsadn adnasdsan nasdad an asdadn asdasd an  nasdnasdansdna asdnasnd ansdasdn asdnasdn asnda sdn asdadnnasd nasd","Rp.12.500.000","50%",R.drawable.bumblebee,R.drawable.logo_univ_ipb));
-        projectList.add(new RecommendProject("6burung","Pertanian"," of time. Aweee it. At thatpoint, I the hot washing spot? I would prefernot to let you know nowte thostinations.Ideally we can meet sompanion.","Rp.55.800.000","80%",R.drawable.aquaman,R.drawable.logo_univ_ugm));
-        projectList.add(new RecommendProject("7kelabang","Kesehatan","Deskripsi tentang Kambing","Rp.10.000.000","10%",R.drawable.john_wick,R.drawable.logo_univ_telkom));
-        projectList.add(new RecommendProject("8cicak","Teknologi","Deskripsi tentang Gagak","Rp.22.400.000","32%",R.drawable.bumblebee,R.drawable.logo_univ_ui));
+
+        projectList.add(new Project("1","Teknologi","Muhammad Arief","2.000.000","30","2","1.800.000","4","Funding","Deskripsi Project Alat Pendeteksi Banjir Keliling","Comment Alat Pendeteksi Banjir","4","Portofolio Alat Pendeteksi Banjir","Alat Pendeteksi Banjir", R.drawable.aquaman1));
+        projectList.add(new Project("2","Teknologi","Aldi Almain","18.000.000","30","2","5.200.000","4","Funding","Deskripsi Project Sistem Informasi Bencana","Comment Sistem Informasi Bencana","3.5","Portofolio Sistem Informasi Bencana","Sistem Informasi Bencana", R.drawable.john_wick));
+        projectList.add(new Project("3","Pertanian","Bayu Satria","1.500.000","30","2","800.000","4","Funding","Deskripsi Project Pembasmi Tikus di Sawah","Comment Pembasmi Tikus di Sawah","5","Portofolio Pembasmi Tikus di Sawah","Pembasmi Tikus di Sawah", R.drawable.bumblebee));
+        projectList.add(new Project("4","Pertanian","Bagas Kara Farhan","12.500.000","30","2","3.000.000","4","Funding","Deskripsi Project Pupuk Dari Kotoran Sapi","Comment Pupuk Dari Kotoran Sapi","4.2","Portofolio Pupuk Dari Kotoran Sapi","Pupuk Dari Kotoran Sapi", R.drawable.john_wick));
+        projectList.add(new Project("5","Kesehatan","Dwi Pratiwi","3.000.000","30","2","1.100.000","4","Funding","Deskripsi Project Vaksinasi Daerah Terpencil","Comment Vaksinasi Daerah Terpencil","4.4","Portofolio Vaksinasi Daerah Terpencil","Vaksinasi Daerah Terpencil", R.drawable.aquaman));
+        projectList.add(new Project("6","Kesehatan","Hilda Aryanitau","5.000.000","30","2","1.500.000","4","Funding","Deskripsi Project Puskesmas Sederhana","Comment Puskesmas Sederhana","5","Portofolio Puskesmas Sederhana","Puskesmas Sederhana", R.drawable.aquaman));
+        projectList.add(new Project("7","Iot","Choirun nisa","2.000.000","30","2","400.000","4","Funding","Deskripsi Project Automatisasi Pelaporan Bencana","Comment Automatisasi Pelaporan Bencana","4.8","Portofolio Automatisasi Pelaporan Bencana","Automatisasi Pelaporan Bencana", R.drawable.aquaman));
+        projectList.add(new Project("8","Iot","Oki Sahroni","4.500.000","30","2","2.400.000","4","Funding","Deskripsi Project Pelacak Jalan Tercepat","Comment Pelacak Jalan Tercepat","4.8","Portofolio Pelacak Jalan Tercepat","Pelacak Jalan Tercepat", R.drawable.aquaman));
+        projectList.add(new Project("9","Perkebunan","Juliari Batu Apung","20.000.000","30","2","10.800.000","4","Funding","Deskripsi Project Desa Mandiri","Comment Desa Mandiri","4.8","Portofolio Desa Mandiri","Desa Mandiri", R.drawable.aquaman));
+        projectList.add(new Project("10","Perkebunan","Eric Terakhir","18.000.000","30","2","2.500.000","4","Funding","Deskripsi Project Pengolahan Jagung","Comment Pengolahan Jagung","4.8","Portofolio Pengolahan Jagung","Automatisasi Pengolahan Jagung", R.drawable.aquaman));
+
+
 
         LinearLayoutManager manager1 = new LinearLayoutManager(this);
         manager1.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -114,16 +108,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData(){
-        trendingProjectList.add(new TrendingProject("1","1ayam","Teknologi","Deskripsi tentang Ayam","Rp.12.500.000","50%",R.drawable.bumblebee,R.drawable.logo_univ_ipb));
-        trendingProjectList.add(new TrendingProject("2","1bebek","Pertanian","Deskripsi tentang Bebek","Rp.55.800.000","80%",R.drawable.aquaman,R.drawable.logo_univ_ugm));
-        trendingProjectList.add(new TrendingProject("3","1kambing","Kesehatan","Deskripsi tentang Kambing","Rp.10.000.000","10%",R.drawable.john_wick,R.drawable.logo_univ_telkom));
-        trendingProjectList.add(new TrendingProject("4","1gagak","Teknologi","Deskripsi tentang Gagak","Rp.22.400.000","32%",R.drawable.bumblebee,R.drawable.logo_univ_ui));
+
+        trendingProjectList.add(new Project("1","Teknologi","Muhammad Arief","2.000.000","30","2","1.800.000","4","Funding","Deskripsi Project Alat Pendeteksi Banjir","Comment Alat Pendeteksi Banjir","4","Portofolio Alat Pendeteksi Banjir","Alat Pendeteksi Banjir", R.drawable.aquaman));
+        trendingProjectList.add(new Project("2","Teknologi","Aldi Almain","18.000.000","30","2","5.200.000","4","Funding","Deskripsi Project Sistem Informasi Bencana","Comment Sistem Informasi Bencana","3.5","Portofolio Sistem Informasi Bencana","Sistem Informasi Bencana", R.drawable.aquaman));
+        trendingProjectList.add(new Project("3","Pertanian","Bayu Satria","1.500.000","30","2","800.000","4","Funding","Deskripsi Project Pembasmi Tikus di Sawah","Comment Pembasmi Tikus di Sawah","5","Portofolio Pembasmi Tikus di Sawah","Pembasmi Tikus di Sawah", R.drawable.aquaman));
+        trendingProjectList.add(new Project("4","Pertanian","Bagas Kara Farhan","12.500.000","30","2","3.000.000","4","Funding","Deskripsi Project Pupuk Dari Kotoran Sapi","Comment Pupuk Dari Kotoran Sapi","4.2","Portofolio Pupuk Dari Kotoran Sapi","Pupuk Dari Kotoran Sapi", R.drawable.aquaman));
+        trendingProjectList.add(new Project("5","Kesehatan","Dwi Pratiwi","3.000.000","30","2","1.100.000","4","Funding","Deskripsi Project Vaksinasi Daerah Terpencil","Comment Vaksinasi Daerah Terpencil","4.4","Portofolio Vaksinasi Daerah Terpencil","Vaksinasi Daerah Terpencil", R.drawable.aquaman));
+        trendingProjectList.add(new Project("6","Kesehatan","Hilda Aryanitau","5.000.000","30","2","1.500.000","4","Funding","Deskripsi Project Puskesmas Sederhana","Comment Puskesmas Sederhana","5","Portofolio Puskesmas Sederhana","Puskesmas Sederhana", R.drawable.aquaman));
+        trendingProjectList.add(new Project("7","Iot","Choirun nisa","2.000.000","30","2","400.000","4","Funding","Deskripsi Project Automatisasi Pelaporan Bencana","Comment Automatisasi Pelaporan Bencana","4.8","Portofolio Automatisasi Pelaporan Bencana","Automatisasi Pelaporan Bencana", R.drawable.aquaman));
+        trendingProjectList.add(new Project("8","Iot","Oki Sahroni","4.500.000","30","2","2.400.000","4","Funding","Deskripsi Project Pelacak Jalan Tercepat","Comment Pelacak Jalan Tercepat","4.8","Portofolio Pelacak Jalan Tercepat","Pelacak Jalan Tercepat", R.drawable.aquaman));
+        trendingProjectList.add(new Project("9","Perkebunan","Juliari Batu Apung","20.000.000","30","2","10.800.000","4","Funding","Deskripsi Project Desa Mandiri","Comment Desa Mandiri","4.8","Portofolio Desa Mandiri","Desa Mandiri", R.drawable.aquaman));
+        trendingProjectList.add(new Project("10","Perkebunan","Eric Terakhir","18.000.000","30","2","2.500.000","4","Funding","Deskripsi Project Pengolahan Jagung","Comment Pengolahan Jagung","4.8","Portofolio Pengolahan Jagung","Automatisasi Pengolahan Jagung", R.drawable.aquaman));
+
     }
 
-//
-//    public void toDetails(View view) {
-//        Intent intent = new Intent(this, DetailsProjectActivity.class);
-//        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//        startActivity(intent);
-//    }
+    public void toLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        startActivity(intent);
+    }
+
 }

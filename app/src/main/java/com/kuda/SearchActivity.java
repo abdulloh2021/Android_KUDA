@@ -1,9 +1,5 @@
 package com.kuda;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,16 +10,20 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kuda.adapter.ProjectAdapter;
-import com.kuda.model.Projects;
+import com.kuda.model.Project;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class SearchActivity extends AppCompatActivity {
 
-    public static ArrayList<Projects> projectList = new ArrayList<Projects>();
+    public static ArrayList<Project> projectList = new ArrayList<Project>();
     private ListView listView;
     private Button sortButton;
     private Button filterButton;
@@ -51,6 +51,7 @@ public class SearchActivity extends AppCompatActivity {
 
         initSearchWidgets();
         initWidgets();
+        clearSetupData();
         setupData();
         setUpList();
         setUpOnclickListener();
@@ -94,7 +95,7 @@ public class SearchActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.profile:
-                        startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                        startActivity(new Intent(getApplicationContext(),InvoiceActivity.class));
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         return true;
 
@@ -178,11 +179,11 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String s)
             {
                 currentSearchText = s;
-                ArrayList<Projects> filteredProjects = new ArrayList<Projects>();
+                ArrayList<Project> filteredProjects = new ArrayList<Project>();
 
-                for(Projects project: projectList)
+                for(Project project: projectList)
                 {
-                    if(project.getProjectName().toLowerCase().contains(s.toLowerCase()))
+                    if(project.getNamaProject().toLowerCase().contains(s.toLowerCase()))
                     {
                         if(selectedFilters.contains("all"))
                         {
@@ -192,7 +193,7 @@ public class SearchActivity extends AppCompatActivity {
                         {
                             for(String filter: selectedFilters)
                             {
-                                if (project.getProjectName().toLowerCase().contains(filter))
+                                if (project.getCategory().toLowerCase().contains(filter))
                                 {
                                     filteredProjects.add(project);
                                 }
@@ -209,12 +210,25 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setupData()
     {
-        projectList.add(new Projects(R.drawable.bulletpoint,"Solar Cell",100,95,1,7,
-            "Funding Process","Technology","TECH1021205654",R.drawable.bumblebee,R.drawable.logo_univ_ipb));
-        projectList.add(new Projects(R.drawable.bulletpoint,"Wavepower",100,150,9,7,
-            "Project Success!","Technology","TECH1021205654",R.drawable.john_wick,R.drawable.logo_univ_ipb));
+        projectList.add(new Project("1","Teknologi","Muhammad Arief","2.000.000","30","2","1.800.000","4","Funding","Deskripsi Project Alat Pendeteksi Banjir","Comment Alat Pendeteksi Banjir","4","Portofolio Alat Pendeteksi Banjir","Alat Pendeteksi Banjir", R.drawable.aquaman));
+        projectList.add(new Project("2","Teknologi","Aldi Almain","18.000.000","30","2","5.200.000","4","Funding","Deskripsi Project Sistem Informasi Bencana","Comment Sistem Informasi Bencana","3.5","Portofolio Sistem Informasi Bencana","Sistem Informasi Bencana", R.drawable.aquaman));
+        projectList.add(new Project("3","Pertanian","Bayu Satria","1.500.000","30","2","800.000","4","Funding","Deskripsi Project Pembasmi Tikus di Sawah","Comment Pembasmi Tikus di Sawah","5","Portofolio Pembasmi Tikus di Sawah","Pembasmi Tikus di Sawah", R.drawable.aquaman));
+        projectList.add(new Project("4","Pertanian","Bagas Kara Farhan","12.500.000","30","2","3.000.000","4","Funding","Deskripsi Project Pupuk Dari Kotoran Sapi","Comment Pupuk Dari Kotoran Sapi","4.2","Portofolio Pupuk Dari Kotoran Sapi","Pupuk Dari Kotoran Sapi", R.drawable.aquaman));
+        projectList.add(new Project("5","Kesehatan","Dwi Pratiwi","3.000.000","30","2","1.100.000","4","Funding","Deskripsi Project Vaksinasi Daerah Terpencil","Comment Vaksinasi Daerah Terpencil","4.4","Portofolio Vaksinasi Daerah Terpencil","Vaksinasi Daerah Terpencil", R.drawable.aquaman));
+        projectList.add(new Project("6","Kesehatan","Hilda Aryanitau","5.000.000","30","2","1.500.000","4","Funding","Deskripsi Project Puskesmas Sederhana","Comment Puskesmas Sederhana","5","Portofolio Puskesmas Sederhana","Puskesmas Sederhana", R.drawable.aquaman));
+        projectList.add(new Project("7","Iot","Choirun nisa","2.000.000","30","2","400.000","4","Funding","Deskripsi Project Automatisasi Pelaporan Bencana","Comment Automatisasi Pelaporan Bencana","4.8","Portofolio Automatisasi Pelaporan Bencana","Automatisasi Pelaporan Bencana", R.drawable.aquaman));
+        projectList.add(new Project("8","Iot","Oki Sahroni","4.500.000","30","2","2.400.000","4","Funding","Deskripsi Project Pelacak Jalan Tercepat","Comment Pelacak Jalan Tercepat","4.8","Portofolio Pelacak Jalan Tercepat","Pelacak Jalan Tercepat", R.drawable.aquaman));
+        projectList.add(new Project("9","Perkebunan","Juliari Batu Apung","20.000.000","30","2","10.800.000","4","Funding","Deskripsi Project Desa Mandiri","Comment Desa Mandiri","4.8","Portofolio Desa Mandiri","Desa Mandiri", R.drawable.aquaman));
+        projectList.add(new Project("10","Perkebunan","Eric Terakhir","18.000.000","30","2","2.500.000","4","Funding","Deskripsi Project Pengolahan Jagung","Comment Pengolahan Jagung","4.8","Portofolio Pengolahan Jagung","Automatisasi Pengolahan Jagung", R.drawable.aquaman));
 
     }
+    private void clearSetupData()
+    {
+        projectList.clear();
+
+
+    }
+
     private void setUpList()
     {
         listView = (ListView) findViewById(R.id.projectsListView);
@@ -227,8 +241,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
             {
-                Projects selectProject = (Projects) (listView.getItemAtPosition(position));
-                Intent showDetail = new Intent(getApplicationContext(), DetailsProjectActivity.class);
+                Project selectProject = (Project) (listView.getItemAtPosition(position));
+                Intent showDetail = new Intent(getApplicationContext(), DetailProjectsActivity.class);
                 showDetail.putExtra("id",selectProject.getId());
                 startActivity(showDetail);
             }
@@ -241,9 +255,9 @@ public class SearchActivity extends AppCompatActivity {
         if(status != null && !selectedFilters.contains(status))
             selectedFilters.add(status);
 
-        ArrayList<Projects> filteredProjects = new ArrayList<Projects>();
+        ArrayList<Project> filteredProjects = new ArrayList<Project>();
 
-        for(Projects project: projectList)
+        for(Project project: projectList)
         {
             for(String filter: selectedFilters)
             {
@@ -279,6 +293,13 @@ public class SearchActivity extends AppCompatActivity {
 
     public void teknologiFilterTapped(View view)
     {
+        searchView.setQuery("",false);
+        searchView.clearFocus();
+
+        if (selectedFilters.contains("all")){
+            selectedFilters.clear();
+        }
+
         filterList("teknologi");
         lookSelected(triangleButton);
         lookUnSelected(allButton);
@@ -286,6 +307,12 @@ public class SearchActivity extends AppCompatActivity {
 
     public void pertanianFilterTapped(View view)
     {
+        searchView.setQuery("",false);
+        searchView.clearFocus();
+
+        if (selectedFilters.contains("all")){
+            selectedFilters.clear();
+        }
         filterList("pertanian");
         lookSelected(squareButton);
         lookUnSelected(allButton);
@@ -293,6 +320,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void iotFilterTapped(View view)
     {
+        searchView.setQuery("",false);
+        searchView.clearFocus();
+        if (selectedFilters.contains("all")){
+            selectedFilters.clear();
+        }
         filterList("iot");
         lookSelected(octagonButton);
         lookUnSelected(allButton);
@@ -300,6 +332,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void perkebunanFilterTapped(View view)
     {
+        searchView.setQuery("",false);
+        searchView.clearFocus();
+        if (selectedFilters.contains("all")){
+            selectedFilters.clear();
+        }
         filterList("perkebunan");
         lookSelected(rectangleButton);
         lookUnSelected(allButton);
@@ -307,6 +344,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void kesehatanFilterTapped(View view)
     {
+        searchView.setQuery("",false);
+        searchView.clearFocus();
+        if (selectedFilters.contains("all")){
+            selectedFilters.clear();
+        }
         filterList("kesehatan");
         lookSelected(circleButton);
         lookUnSelected(allButton);
@@ -314,6 +356,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void showFilterTapped(View view)
     {
+
         if(filterHidden == true)
         {
             filterHidden = false;
@@ -370,7 +413,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void idASCTapped(View view)
     {
-        Collections.sort(projectList, Projects.idAscending);
+        Collections.sort(projectList, Project.idAscending);
         checkForFilter();
         unSelectAllSortButtons();
         lookSelected(idAscButton);
@@ -378,7 +421,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void idDESCTapped(View view)
     {
-        Collections.sort(projectList, Projects.idAscending);
+        Collections.sort(projectList, Project.idAscending);
         Collections.reverse(projectList);
         checkForFilter();
         unSelectAllSortButtons();
@@ -387,7 +430,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void nameASCTapped(View view)
     {
-        Collections.sort(projectList, Projects.nameAscending);
+        Collections.sort(projectList, Project.nameAscending);
         checkForFilter();
         unSelectAllSortButtons();
         lookSelected(nameAscButton);
@@ -395,7 +438,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void nameDESCTapped(View view)
     {
-        Collections.sort(projectList, Projects.nameAscending);
+        Collections.sort(projectList, Project.nameAscending);
         Collections.reverse(projectList);
         checkForFilter();
         unSelectAllSortButtons();
@@ -412,8 +455,8 @@ public class SearchActivity extends AppCompatActivity {
             }
             else
             {
-                ArrayList<Projects> filteredProjects = new ArrayList<Projects>();
-                for(Projects project: projectList)
+                ArrayList<Project> filteredProjects = new ArrayList<Project>();
+                for(Project project: projectList)
                 {
                     if(project.getCategory().toLowerCase().contains(currentSearchText))
                     {
@@ -429,7 +472,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    private void setAdapter(ArrayList<Projects> projectList)
+    private void setAdapter(ArrayList<Project> projectList)
     {
         ProjectAdapter adapter = new ProjectAdapter(getApplicationContext(), 0, projectList);
         listView.setAdapter(adapter);

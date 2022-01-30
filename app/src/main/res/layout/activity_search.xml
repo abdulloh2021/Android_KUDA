@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:background="@color/whitey"
             android:iconifiedByDefault="false"
-            android:queryHint="Shape Name"></SearchView>
+            android:queryHint="Project Name"></SearchView>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tabatas"

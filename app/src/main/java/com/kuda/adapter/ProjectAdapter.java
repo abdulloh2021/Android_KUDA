@@ -9,20 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kuda.R;
-import com.kuda.model.Projects;
+import com.kuda.model.Project;
 
 import java.util.List;
 
-public class ProjectAdapter extends ArrayAdapter<Projects> {
+public class ProjectAdapter extends ArrayAdapter<Project> {
 
-    public ProjectAdapter(Context context, int resource, List<Projects> projectList)
+    public ProjectAdapter(Context context, int resource, List<Project> projectList)
     {
         super(context,resource,projectList);
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        Projects project = getItem(position);
+        Project project = getItem(position);
         if(convertView == null)
         {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.project_cell, parent, false);
@@ -33,7 +33,7 @@ public class ProjectAdapter extends ArrayAdapter<Projects> {
         ImageView iv = (ImageView) convertView.findViewById(R.id.projectImage);
 
 
-        tv.setText(project.getId() + " - " + project.getProjectName() + " - " + project.getCategory());
+        tv.setText( project.getNamaProject() + " - " + project.getUsername()+ " - " + project.getTargetDana());
         tvKategori.setText(project.getCategory());
         iv.setImageResource(project.getImage());
 
